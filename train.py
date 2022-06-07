@@ -98,7 +98,9 @@ def main(opt):
 
     assert opt.world_size <= 1, "you don't need multi-gpu for morphology"
 
-    device_id = 0 if len(opt.gpu_ranks) == 1 else -1
+    device_id = 0 if opt.world_size == 1 else -1
+    #device_id = 0
+    #import pdb;pdb.set_trace()
 
     opt = training_opt_postprocessing(opt, device_id)
     init_logger(opt.log_file)
@@ -156,7 +158,7 @@ def main(opt):
     # fields to have a different structure
     dataset_fields = dict(chain.from_iterable(fields.values()))
 
-    device = "cuda" if opt.gpu_ranks else "cpu"
+    device = "cuda" if opt.world_size else "cpu"
 
     train_dataset = torch.load(opt.data + '.train.pt')
     train_dataset.fields = dataset_fields

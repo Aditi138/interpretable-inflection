@@ -17,5 +17,5 @@ attnpath=$predpath.attn
 evalout=$preddir/$evalset.eval.$beam
 echo $predpath
 python translate.py -model $model -corpora $test -output $predpath -beam_size $beam --attn_path $attnpath #-gpu 0
-python pred2sigmorphon.py $test $predpath > $finalout
-python evalm.py --guess $finalout --gold $test --task 1 > $evalout
+#python pred2sigmorphon.py $test $predpath > $finalout
+#python evalm.py --guess $finalout --gold $test --task 1 > $evalout

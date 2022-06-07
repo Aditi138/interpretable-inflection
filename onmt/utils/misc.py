@@ -38,7 +38,7 @@ def use_gpu(opt):
     Creates a boolean if gpu used
     """
     return (hasattr(opt, 'gpu_ranks') and len(opt.gpu_ranks) > 0) or \
-        (hasattr(opt, 'gpu') and opt.gpu > -1)
+        (hasattr(opt, 'gpu') and opt.gpu > -1) or (hasattr(opt, 'world_size') and opt.world_size == 1)
 
 
 def side_information(batch):

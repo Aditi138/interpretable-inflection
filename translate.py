@@ -26,5 +26,6 @@ if __name__ == "__main__":
     opts.translate_opts(parser)
 
     opt = parser.parse_args()
+    opt.gpu = 0
     logger = init_logger(opt.log_file)
     main(opt)
